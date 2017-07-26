@@ -1,6 +1,23 @@
 source 'https://rubygems.org'
  
  # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+  git_source(:github) do |repo_name|
+   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+   "https://github.com/#{repo_name}.git"
+ end
+
+
+
+ # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+ gem 'jbuilder', '~> 2.5'
+ 
+ group :development do
+   gem 'listen', '~> 3.0.5'
+ end
+ 
+ 
+ #old CODE BELOW
+ 
  gem 'rails', '4.2.5'
  
  group :production do
@@ -18,7 +35,7 @@ source 'https://rubygems.org'
  gem 'coffee-rails', '~> 4.1.0'
  gem 'jquery-rails'
  gem 'turbolinks'
- gem 'bootstrap'
+ # gem 'bootstrap'
  gem 'figaro'
 
  group :development, :test do
