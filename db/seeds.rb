@@ -6,5 +6,14 @@ end
 
 wikis = Wiki.all
 
+5.times do 
+  User.create!(
+    email: RandomData.random_email,
+    password: RandomData.random_sentence
+    )
+end
+users = User.all
+
+puts "#{User.count} users created"
 puts "Seed finished"
 puts "#{Wiki.count} wikis created"
