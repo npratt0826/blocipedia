@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   has_many :wikis, dependent: :destroy
   
   devise :database_authenticatable, :registerable,
@@ -8,9 +8,11 @@ class User < ActiveRecord::Base
   
   enum role: [:standard, :premium, :admin]
   
+  
   def init
     self.role ||= :standard
-    
+    puts "init user role to standard"
   end
+  
   
 end
