@@ -35,7 +35,7 @@ RSpec.describe WikisController, type: :controller do
        expect(response).to render_template :show
      end
  
-     it "assigns my_post to @post" do
+     it "assigns my_wiki to @wiki" do
        get :show, params: { id: my_wiki.id }
        expect(assigns(:wiki)).to eq(my_wiki)
      end
@@ -62,12 +62,11 @@ RSpec.describe WikisController, type: :controller do
   describe "WIKI create" do
     
     it "increases the number of wikis by 1" do
-      expect{ wiki :create, params: { wiki.user_id: my_wiki.id, wiki: { title: RandomData.random_sentence, body: RandomData.random_paragraph }}}.to change(Wiki, :count).by(1)
+      expect{ wiki :create, params: { user_id: my_wiki.id, wiki: { title: RandomData.random_sentence, body: RandomData.random_paragraph } } }.to change(Wiki,:count).by(1)
     end
     
     it "assigns new wiki to @wiki" do
-      wiki :create, params: { title: RandomData.random_sentence, body: RandomData.random_paragraph }
-      expect(assigns(:wiki)).to eq Wiki.last
+      expect(assigns(:my_wiki)).to eq Wiki.last
     end
     
     it "redirects to new wiki" do
