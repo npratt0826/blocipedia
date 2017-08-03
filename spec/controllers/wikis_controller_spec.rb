@@ -3,11 +3,13 @@ include RandomData
 
 
 RSpec.describe WikisController, type: :controller do
-  
-  let(:my_wiki) { Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph) }
-  
+  let(:my_user) { create(:user) }
+  let(:my_wiki) { create(:wiki, user: my_user) }
+  before do
+      sign_in(my_user)
+    end
 
-  describe "GET #index" do
+  describe "GET index" do
     it "returns http success" do
       get :index
       expect(response).to have_http_status(:success)
@@ -20,6 +22,10 @@ RSpec.describe WikisController, type: :controller do
   end
 
   describe "GET show" do
+    # before do
+    #   @request.env['devise.mapping'] = Devise.mappings[:wikis]
+    # end
+    
      it "returns http success" do
        get :show, params: { id: my_wiki.id }
        expect(response).to have_http_status(:success)
@@ -56,7 +62,7 @@ RSpec.describe WikisController, type: :controller do
   describe "WIKI create" do
     
     it "increases the number of wikis by 1" do
-      expect{ wiki :create, params: { wiki: { title: RandomData.random_sentence, body: RandomData.random_paragraph }}}.to change(Wiki, :count).by(1)
+      expect{ wiki :create, params: { wiki.user_id: my_wiki.id, wiki: { title: RandomData.random_sentence, body: RandomData.random_paragraph }}}.to change(Wiki, :count).by(1)
     end
     
     it "assigns new wiki to @wiki" do
