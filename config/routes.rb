@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   resources :users, only: [:show, ]
   
   resources :charges, only: [:new, :create]
+  
+  post "charges/downgrade1" => "charges#downgrade1"
+  
+  get 'charges/downgrade1' => "charges#downgrade1"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

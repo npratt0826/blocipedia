@@ -1,7 +1,7 @@
 class ChargesController < ApplicationController
   
   def create
-    @amount = 500
+    @amount = 1500
     
     customer = Stripe::Customer.create(
       email: current_user.email,
@@ -15,7 +15,8 @@ class ChargesController < ApplicationController
       description: "BigMoney Membership - #{current_user.email}",
       currency: "usd"
       )
-        
+      
+      current_user.update_attribute(:role, 'premium')  
       flash[:notice] = "Thanks for all the money, #{current_user.email}! Feel free to pay me again."
       redirect_to user_path(current_user)
       
@@ -31,6 +32,16 @@ class ChargesController < ApplicationController
      description: "BigMoney Membership - #{current_user.email}",
      amount: @amount
    }
+  end
+  
+  def downgrade1
+    if current_user.premium?
+       current_user.update_attribute(:role, 'standard')
+       flash[:success] = "You have been downgraded to standard."
+       redirect_to root_url
+    else
+      false
+    end
   end
   
   
