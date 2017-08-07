@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   
   root 'welcome#index'
   
-  resources :users, only: [:show, ]
+  resources :users, only: [:show]
   
   resources :charges, only: [:new, :create]
   
