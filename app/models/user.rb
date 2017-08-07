@@ -13,7 +13,6 @@ class User < ApplicationRecord
   
   def init
     self.role ||= :standard
-    puts "init user role to standard"
   end
   
   
