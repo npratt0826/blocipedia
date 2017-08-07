@@ -6,11 +6,10 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many(:wikis) }
   it { is_expected.to validate_presence_of(:email) }
   it { is_expected.to validate_presence_of(:password) }
-end
 
   describe "attributes" do
-    it "should have name and email attributes" do
-      expect(user).to have_attributes(email: user.email)
+    it "should have email attribute" do
+      expect(user).to have_attribute(email: user.email)
     end
     it "responds to role" do
        expect(user).to respond_to(:role)
@@ -28,3 +27,5 @@ end
        expect(user).to respond_to(:premium?)
      end
    end
+   
+ end
