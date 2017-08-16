@@ -4,7 +4,7 @@ include RandomData
 
 RSpec.describe WikisController, type: :controller do
   let(:my_user) { create(:user) }
-  let(:my_wiki) { create(:wiki, user: my_user) }
+  let(:my_wiki) { create(:wiki, user: my_user, private: false) }
   before do
       sign_in(my_user)
     end
@@ -80,6 +80,14 @@ RSpec.describe WikisController, type: :controller do
     it "returns http success" do
       get :edit
       expect(response).to have_http_status(:success)
+    end
+  end
+  
+  context "private wikis" do
+    describe "admin and premium users have access to private wikis" do
+      it "makes public wiki private" do
+        
+      end
     end
   end
 

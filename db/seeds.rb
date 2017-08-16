@@ -1,7 +1,7 @@
 require 'random_data'
 
 25.times do 
-    Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)
+    Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false)
 end
 
 wikis = Wiki.all
