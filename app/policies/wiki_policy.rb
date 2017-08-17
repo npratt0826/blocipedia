@@ -4,11 +4,7 @@ class WikiPolicy < ApplicationPolicy
     end
     
     def index?
-        if user.admin? || user.premium? 
-            @wikis = Wiki.all
-        else
-            @wikis = Wiki.find_by private: false
-        end
+       
     end
         
     

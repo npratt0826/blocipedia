@@ -1,7 +1,11 @@
 class WikisController < ApplicationController
+  
   def index
-    @wikis = Wiki.all
-    authorize @wikis
+    if current_user.standard?
+        @wikis = Wiki.all.where(private: false)
+    else
+        @wikis = Wiki.all
+    end
   end
 
   def show
@@ -15,7 +19,6 @@ class WikisController < ApplicationController
   def create
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
-    
     @wiki.body = params[:wiki][:body]
     @wiki.private = params[:wiki][:private]
     @wiki.user = current_user
@@ -38,6 +41,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    @wiki.private = params[:wiki][:private]
     
     if @wiki.save
       flash[:notice] = "Wiki was updated"
