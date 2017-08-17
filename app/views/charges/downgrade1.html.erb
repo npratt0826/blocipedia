@@ -1,4 +1,6 @@
 <p>Are you sure you want to downgrade back to standard?<p>
+    
+<p><b>All your private wikis will become public</b></p>
 
-<%= link_to "Yes", :controller => :charges, :action => :downgrade1, class: 'btn btn-danger' %>
-<%= link_to "No", root_url, class: 'btn btn-success' %>
+<%= link_to "Yes", charges_downgrade1_path, controller: :charges, action: :downgrade1, class: 'btn btn-success',data: { confirm: "Are you sure?" } %>
+<%= link_to "No", user_path(current_user), class: 'btn btn-danger' %>

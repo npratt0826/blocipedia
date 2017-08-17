@@ -36,11 +36,14 @@ class ChargesController < ApplicationController
   
   def downgrade1
     if current_user.premium?
-       current_user.update_attribute(:role, 'standard')
-       flash[:success] = "You have been downgraded to standard."
-       redirect_to root_url
+      current_user.update_attribute(:role, 'standard')
+      flash[:alert] = "All your private wikis are now public"
+      current_user.wikis.all.update_attribute(:private, "false")
+      redirect_to root_url
     else
+      flash[:noitce] = "Downgrade failed"
       false
+      redirect_to user_path(current_user)
     end
   end
   
