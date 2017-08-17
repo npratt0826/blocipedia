@@ -38,13 +38,12 @@ class ChargesController < ApplicationController
     if current_user.premium?
       current_user.update_attribute(:role, 'standard')
       flash[:alert] = "All your private wikis are now public"
-      current_user.wikis.all.update_attribute(:private, "false")
       redirect_to root_url
     else
-      flash[:noitce] = "Downgrade failed"
-      false
+      flash[:notice] = "Downgrade failed"
       redirect_to user_path(current_user)
     end
+    current_user.wikis.where(private: true).update_all(private: false)
   end
   
   

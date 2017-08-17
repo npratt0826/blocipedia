@@ -1,7 +1,9 @@
 <h1><%= @wiki.title %></h1>
  
  <div class="row">
-   <div class="col-md-8">
+   <div class="col-md-8" >
+    <p><%= "#{@wiki.private}" %></p>
+     <p><%= @wiki.private ? "true" : "false" %></p>
      <p><%= @wiki.body %></p>
    </div>
    <div class="col-md-4">
@@ -10,4 +12,5 @@
      <%= link_to "Delete", @wiki, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to dlete this wiki?'} %>
      <% end %>
    </div>
+   
  </div>
