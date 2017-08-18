@@ -1,7 +1,11 @@
 require 'random_data'
 
 25.times do 
-    Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, private: false)
+    Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph)
+end
+
+25.times do 
+    Wiki.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, private: true)
 end
 
 wikis = Wiki.all
@@ -24,6 +28,13 @@ users = User.all
    email:    'member@example.com',
    password: 'helloworld',
    role: "standard"
+   
+ )
+ 
+ premium = User.create!(
+   email:    'premium@example.com',
+   password: 'helloworld',
+   role: "premium"
    
  )
 

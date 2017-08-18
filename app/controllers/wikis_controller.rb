@@ -2,7 +2,7 @@ class WikisController < ApplicationController
   
   def index
     if current_user.standard?
-        @wikis = Wiki.all.where(private: false)
+        @wikis = Wiki.all.where(private: nil)
     else
         @wikis = Wiki.all
     end

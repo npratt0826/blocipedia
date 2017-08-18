@@ -4,9 +4,10 @@ include RandomData
 
 RSpec.describe WikisController, type: :controller do
   let(:my_user) { create(:user) }
+  let(:other_user) { create(:user) }
   let(:my_wiki) { create(:wiki, user: my_user, private: false) }
   before do
-      sign_in(my_user)
+      sign_in my_user
     end
 
   describe "GET index" do

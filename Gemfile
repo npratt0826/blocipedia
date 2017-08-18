@@ -52,4 +52,5 @@ source 'https://rubygems.org'
  gem 'devise'
  gem 'pundit'
  gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+ gem 'redcarpet'
  
