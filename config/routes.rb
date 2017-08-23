@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   post "charges/downgrade1" => "charges#downgrade1"
   
   get 'charges/downgrade1' => "charges#downgrade1"
+  
+  resources :wikis do
+    resources :collaborators, only: [:new, :create, :destroy]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

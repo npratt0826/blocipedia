@@ -24,14 +24,11 @@
       <% end %>
     </div>
     <div>
-      <p>Add Collaborators</p>
-       <% if current_user.id == @wiki.user_id || current_user.admin? %>
-         <%= collection_check_boxes(:wiki, :user_ids, User.all, :id, :email) do |b| %>
-           <%= b.check_box %>
-           <%= b.label %><br />
-         <% end %>
+       <% if @wiki.private %>
+        <p>Add Collaborators</p>
+        <%= render partial: 'collaborators/form', locals: { f: f } %>
        <% end %>
      </div>
      <% end %>
-    <%= f.submit "Save", class: 'btn btn-success' %>
-    <% end %>
+     <%= f.submit "Save", class: 'btn btn-success' %>
+     <% end %>

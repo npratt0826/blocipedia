@@ -2,6 +2,10 @@ class WikiPolicy < ApplicationPolicy
     def destroy?
         user.admin? || record.user_id == user.id
     end
+    
+    def edit?
+        user.present?
+    end
   
     class Scope
      attr_reader :user, :scope
