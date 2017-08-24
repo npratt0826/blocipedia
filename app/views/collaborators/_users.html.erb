@@ -1,5 +1,5 @@
-<h4>Collaborators</h4>
-<ul>
+<h4 class='col-md-8'>Collaborators</h4>
+<ul class='col-md-8'>
 	<% @wiki.collaborators.each do |collaborator| %>
 		<li>
 			<h4><%= collaborator.user.email %> <%= link_to "", "/wikis/#{@wiki.id}/collaborators/#{collaborator.id}", method: :delete, class: 'glyphicon glyphicon-remove' %> </h4>
